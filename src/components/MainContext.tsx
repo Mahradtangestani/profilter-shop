@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useFilter } from "./FilterContext";
 import { Tally3 } from "lucide-react";
 import axios from "axios";
+import BookCard from "./BookCard";
 
 const MainContent = ()=>{
     
@@ -95,7 +96,15 @@ const MainContent = ()=>{
                 </div>
 
                 <div className="grid grid-cols-4 md:grid-cols-4 sm:grid-cols-3 gap-5">
-
+                    {filteredProducts.map(product=>(
+                        <BookCard
+                        key={product.id}
+                        id={product.id}
+                        title={product.title}
+                        image={product.thumbnail}
+                        price={product.price}
+                        />
+                    ))}
                 </div>
             </div>
         </section>
