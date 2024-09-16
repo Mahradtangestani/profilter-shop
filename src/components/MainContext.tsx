@@ -126,35 +126,41 @@ const MainContent = ()=>{
                      </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2 gap-5">
-                    {filteredProducts.map(product=>(
-                        <BookCard
-                        key={product.id}
-                        id={product.id}
-                        title={product.title}
-                        image={product.thumbnail}
-                        price={product.price}
-                        />
-                    ))}
-                </div>
-
-                <div className="flex flex-col sm:flex-row justify-between items-center mt-5">
-                    <button onClick={()=>handlePageChange(currentPage - 1)} className="border  bg-gray-500 text-white px-3 py-2 mx-2 rounded-full" disabled={currentPage === 1}>
-                        Previous
-                    </button>
-                    
-                    <div className="flex flex-wrap justify-center">
-                       {getPaginationButton().map(page=>(
-                           <button key={page} onClick={()=>handlePageChange(page)} className={`py-2 px-4 border mx-1 rounded-full ${page === currentPage ? "bg-gray-500 text-white" : ""}`}>
-                              {page}
-                           </button>
-                       ))}
-                    </div>
-
-                    <button onClick={()=>handlePageChange(currentPage + 1)} className="border bg-gray-500 text-white px-4 py-2 mx-2 rounded-full" disabled={currentPage === totalPages}
-                        >Next
-                    </button>
-                </div>
+                {products.length ? (
+                    <>
+                                    <div className="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2 gap-5">
+                                    {filteredProducts.map(product=>(
+                                        <BookCard
+                                        key={product.id}
+                                        id={product.id}
+                                        title={product.title}
+                                        image={product.thumbnail}
+                                        price={product.price}
+                                        />
+                                    ))}
+                                </div>
+                
+                                <div className="flex flex-col sm:flex-row justify-between items-center mt-5">
+                                    <button onClick={()=>handlePageChange(currentPage - 1)} className="border  bg-gray-500 text-white px-3 py-2 mx-2 rounded-full" disabled={currentPage === 1}>
+                                        Previous
+                                    </button>
+                                    
+                                    <div className="flex flex-wrap justify-center">
+                                       {getPaginationButton().map(page=>(
+                                           <button key={page} onClick={()=>handlePageChange(page)} className={`py-2 px-4 border mx-1 rounded-full ${page === currentPage ? "bg-gray-500 text-white" : ""}`}>
+                                              {page}
+                                           </button>
+                                       ))}
+                                    </div>
+                
+                                    <button onClick={()=>handlePageChange(currentPage + 1)} className="border bg-gray-500 text-white px-4 py-2 mx-2 rounded-full" disabled={currentPage === totalPages}
+                                        >Next
+                                    </button>
+                                </div>
+                                </>
+                ) : (
+                    <div className="loader"></div>
+                )}
             </div>
         </section>
     )
