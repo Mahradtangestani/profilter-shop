@@ -66,7 +66,38 @@ const MainContent = ()=>{
     }
 
     const filteredProducts = getFilteredProducts()
-    console.log(filteredProducts);
+    
+    
+
+    // Pagination *****
+    const totalProducts = 100;
+    const totalPages = Math.ceil(totalProducts / ItemsPerPage)
+
+    const handlePageChange = (page:number)=>{
+         if(page > 0 && page <= totalPages){
+            setCurrentPage(page)
+         }
+    }
+
+    const getPaginationButton = ()=>{
+        const buttons:number[] = []
+
+        let startPage = Math.max(1, currentPage - 2)
+        let endPage = Math.min(totalPages, currentPage + 2 )
+
+        if(currentPage - 2 < 1){
+            endPage = Math.min(totalPages, endPage + (2 - currentPage - 1))
+        }
+        if(currentPage + 2 > totalPages){
+            startPage = Math.min(1, startPage - (2 - totalPages - currentPage))
+        }
+
+        for(let page = startPage; page <= endPage; page++){
+            buttons.push(page)
+        }
+
+        return buttons;
+    }
     
 
     return (
@@ -74,7 +105,7 @@ const MainContent = ()=>{
             <div className="mb-5">
                 <div className="flex flex-col sm:flex-row justify-between items-center">
                      <div className="relative mb-5 mt-5">
-                        <button className="border px-4 py-2 rounded-full flex items-center">
+                        <button onClick={()=>setDropDownOpen(!dropDownOpen)} className="border px-4 py-2 rounded-full flex items-center">
                             <Tally3 className="mr-2"/>
                             {filter === "all" ? "Filter" : filter.charAt(0).toUpperCase() + filter.slice(1) }
                         </button>
@@ -95,7 +126,7 @@ const MainContent = ()=>{
                      </div>
                 </div>
 
-                <div className="grid grid-cols-4 md:grid-cols-4 sm:grid-cols-3 gap-5">
+                <div className="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2 gap-5">
                     {filteredProducts.map(product=>(
                         <BookCard
                         key={product.id}
@@ -105,6 +136,24 @@ const MainContent = ()=>{
                         price={product.price}
                         />
                     ))}
+                </div>
+
+                <div className="flex flex-col sm:flex-row justify-between items-center mt-5">
+                    <button onClick={()=>handlePageChange(currentPage - 1)} className="border px-0 py-2 mx-2 rounded-full" disabled={currentPage === 1}>
+                        Previous
+                    </button>
+                    
+                    <div className="flex flex-wrap justify-center">
+                       {getPaginationButton().map(page=>(
+                           <button key={page} onClick={()=>handlePageChange(page)} className={`py-2 px-4 border mx-1 rounded-full ${page === currentPage ? "bg-black text-white" : ""}`}>
+                              {page}
+                           </button>
+                       ))}
+                    </div>
+
+                    <button onClick={()=>handlePageChange(currentPage + 1)} className="border px-0 py-2 mx-2 rounded-full" disabled={currentPage === totalPages}
+                        >Next
+                    </button>
                 </div>
             </div>
         </section>
