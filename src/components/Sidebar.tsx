@@ -89,14 +89,14 @@ const Sidebar = ()=>{
             <h1 className="text-2xl font-bold mb-10 mt-4">Mahrad Store</h1>
 
             <section>
-                <input type="text" className="border-2 rounded px-2 sm:mb-0" placeholder="Search Products..." 
+                <input type="text" className="p-1 w-44 ring-2 placeholder-slate-700 ring-gray-200 outline-none bg-slate-50 border-2 rounded px-2 sm:mb-0" placeholder="Search Products..." 
                 value={searchQuery}
                 onChange={(e)=>setSearchQuery(e.target.value)}/>
-                <div className="flex justify-center items-center">
-                    <input type="text" className="border-2 mr-2 px-5 py-3 mb-3 w-full" placeholder="Min" 
+                <div className="flex justify-center items-center mt-2">
+                    <input type="text" className="border-2 mr-2 px-5 py-3 mb-3 w-full placeholder-slate-700 ring-gray-200 outline-none bg-slate-50" placeholder="Min" 
                     value={minPrice ?? ""}
                     onChange={handleMinPriceChange}/>
-                    <input type="text" className="border-2 mr-2 px-5 py-3 mb-3 w-full" placeholder="Max"
+                    <input type="text" className="border-2 mr-2 px-5 py-3 mb-3 w-full placeholder-slate-700 ring-gray-200 outline-none bg-slate-50" placeholder="Max"
                     value={maxPrice ?? ""}
                     onChange={handleMaxPriceChage}/>
                 </div>
@@ -105,7 +105,7 @@ const Sidebar = ()=>{
                 </div>
                 <section>
                 {categories.map((category , index)=>(
-                    <label key={index} className="block mb-2">
+                    <label key={index} className="block mb-2 font-bold text-gray-700">
                        <input type="radio" name="category" value={category}
                        onChange={()=>handleRadioChangeCategory(category)}
                        checked={selectCategory === category}
@@ -116,17 +116,17 @@ const Sidebar = ()=>{
                 </section>
 
                 <div className="mb-2 mt-4">
-                   <h2 className="text-xl font-semibold mb-3">Keywords</h2>
+                   <h2 className="text-xl font-semibold mb-3 ">Keywords</h2>
                    <div>
                      {keywords.map((keyword,index)=>(
-                        <button key={index} onClick={()=>handleKeywordClick(keyword)} className="block mb-2 px-4 py-2 w-full text-left border rounded hover:bg-gray-200">
+                        <button key={index} onClick={()=>handleKeywordClick(keyword)} className="block mb-2 px-4 py-2 w-full text-left border rounded bg-blue-100 font-semibold hover:bg-gray-400 hover:text-white">
                           {keyword.toUpperCase()}
                         </button>
                      ))}
                    </div>
                 </div>
 
-                <button onClick={handleResetFilters} className="w-full mb-[4rem] py-2 bg-black text-white rounded mt-5">
+                <button onClick={handleResetFilters} className="w-full mb-[4rem] py-2  bg-gray-700 hover:bg-white hover:text-black hover:right-2 hover:ring-2 hover:ring-offset-gray-800 text-white rounded">
                     Reset Filters
                 </button>
             </section>

@@ -10,7 +10,7 @@ interface BookcardProps{
 
 const BookCard :React.FC<BookcardProps> = ({id,title,image,price})=>{
     return (
-        <div className="border p-4 rounded">
+        <div className="border p-4 rounded shadow-lg bg-gray-50">
           <Link to={`/product/${id}`}>
               <img src={image} alt={title} className="w-full h-32 object-cover mb-2"/>
               <div className="text-center">

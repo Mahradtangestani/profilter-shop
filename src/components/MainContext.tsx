@@ -105,13 +105,13 @@ const MainContent = ()=>{
             <div className="mb-5">
                 <div className="flex flex-col sm:flex-row justify-between items-center">
                      <div className="relative mb-5 mt-5">
-                        <button onClick={()=>setDropDownOpen(!dropDownOpen)} className="border px-4 py-2 rounded-full flex items-center">
+                        <button onClick={()=>setDropDownOpen(!dropDownOpen)} className="border px-4 py-2 rounded-full flex items-center bg-gray-200 ring-2 hover:bg-gray-700 hover:text-white hover:ring-2 hover:ring-offset-gray-600">
                             <Tally3 className="mr-2"/>
                             {filter === "all" ? "Filter" : filter.charAt(0).toUpperCase() + filter.slice(1) }
                         </button>
 
                         {dropDownOpen && (
-                            <div className="absolute bg-white border border-gray-300 rounded mt-2 w-full sm:w-40">
+                            <div className="absolute bg-slate-50 border border-gray-300 rounded mt-2 w-full sm:w-40">
                                 <button onClick={()=>setFilter("Cheap")} className="px-4 py-2 w-full text-left hover:bg-gray-200">
                                     Cheap
                                 </button>
@@ -139,19 +139,19 @@ const MainContent = ()=>{
                 </div>
 
                 <div className="flex flex-col sm:flex-row justify-between items-center mt-5">
-                    <button onClick={()=>handlePageChange(currentPage - 1)} className="border px-0 py-2 mx-2 rounded-full" disabled={currentPage === 1}>
+                    <button onClick={()=>handlePageChange(currentPage - 1)} className="border  bg-gray-500 text-white px-3 py-2 mx-2 rounded-full" disabled={currentPage === 1}>
                         Previous
                     </button>
                     
                     <div className="flex flex-wrap justify-center">
                        {getPaginationButton().map(page=>(
-                           <button key={page} onClick={()=>handlePageChange(page)} className={`py-2 px-4 border mx-1 rounded-full ${page === currentPage ? "bg-black text-white" : ""}`}>
+                           <button key={page} onClick={()=>handlePageChange(page)} className={`py-2 px-4 border mx-1 rounded-full ${page === currentPage ? "bg-gray-500 text-white" : ""}`}>
                               {page}
                            </button>
                        ))}
                     </div>
 
-                    <button onClick={()=>handlePageChange(currentPage + 1)} className="border px-0 py-2 mx-2 rounded-full" disabled={currentPage === totalPages}
+                    <button onClick={()=>handlePageChange(currentPage + 1)} className="border bg-gray-500 text-white px-4 py-2 mx-2 rounded-full" disabled={currentPage === totalPages}
                         >Next
                     </button>
                 </div>
