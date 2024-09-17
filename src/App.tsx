@@ -8,9 +8,9 @@ import PopularBlogs from "./components/PopularBlogs";
 export default function App(){
   return (
     <Router>
-       <div className="flex h-screen bg-[#ffff]">
+       <div className="flex gap-0 h-screen">
           <Sidebar/>
-          <div className="rounded w-full flex justify-between flex-wrap">
+          <div className="rounded w-full flex justify-center flex-wrap">
           <Routes>
                <Route path="/" element={<MainContent/>}/>
                <Route path="/product/:id" element={<ProductPage/>}/>

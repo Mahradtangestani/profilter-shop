@@ -92,7 +92,7 @@ const Sidebar = ()=>{
                 <input type="text" className="p-1 w-44 ring-2 placeholder-slate-700 ring-gray-200 outline-none bg-slate-50 border-2 rounded px-2 sm:mb-0" placeholder="Search Products..." 
                 value={searchQuery}
                 onChange={(e)=>setSearchQuery(e.target.value)}/>
-                <div className="flex justify-center items-center mt-2">
+                <div className="flex justify-center items-center mt-3">
                     <input type="text" className="border-2 mr-2 px-5 py-3 mb-3 w-full placeholder-slate-700 ring-gray-200 outline-none bg-slate-50" placeholder="Min" 
                     value={minPrice ?? ""}
                     onChange={handleMinPriceChange}/>
